@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${pageTitle})}"></head>
+<body>
+<div class="app-layout">
+    <aside th:replace="~{fragments/layout :: sidebar}"></aside>
+    <main class="main-content">
+        <header class="page-header"><div><p class="eyebrow">기준정보</p><h1 th:text="${pageTitle}"></h1><p class="text-secondary mb-0">별표(*)가 있는 항목은 필수입니다.</p></div></header>
+        <section class="card workspace-card form-card">
+            <div class="card-body p-4">
+                <form method="post" th:action="${itemId == null} ? @{/items} : @{/items/{id}(id=${itemId})}" th:object="${itemForm}">
+                    <input type="hidden" th:field="*{version}">
+                    <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                        <p class="mb-1 fw-semibold">저장하지 못했습니다. 아래 내용을 확인해 주세요.</p>
+                        <ul class="mb-0"><li th:each="error : ${#fields.allErrors()}" th:text="${error}"></li></ul>
+                    </div>
+                    <div class="mb-3">
+                        <label for="itemCode" class="form-label">품번 <span class="text-danger">*</span></label>
+                        <input th:field="*{itemCode}" class="form-control" th:errorclass="is-invalid" maxlength="50" required aria-describedby="codeHelp">
+                        <div id="codeHelp" class="form-text">영문·숫자·점·밑줄·하이픈, 최대 50자. 소문자는 대문자로 저장합니다.</div>
+                        <div class="invalid-feedback" th:errors="*{itemCode}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="itemName" class="form-label">품목명 <span class="text-danger">*</span></label>
+                        <input th:field="*{itemName}" class="form-control" th:errorclass="is-invalid" maxlength="100" required>
+                        <div class="invalid-feedback" th:errors="*{itemName}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="drawingNumber" class="form-label">도면번호</label>
+                        <input th:field="*{drawingNumber}" class="form-control" th:errorclass="is-invalid" maxlength="100">
+                        <div class="invalid-feedback" th:errors="*{drawingNumber}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">설명</label>
+                        <textarea th:field="*{description}" class="form-control" th:errorclass="is-invalid" rows="4" maxlength="1000"></textarea>
+                        <div class="form-text">가공 특징, 소재 등 학습에 필요한 메모를 입력하세요. 최대 1,000자.</div>
+                        <div class="invalid-feedback" th:errors="*{description}"></div>
+                    </div>
+                    <div class="form-check mb-4">
+                        <input type="checkbox" th:field="*{active}" class="form-check-input" aria-describedby="activeHelp">
+                        <label for="active1" class="form-check-label">사용 중인 품목</label>
+                        <div id="activeHelp" class="form-text">체크를 해제하면 비활성으로 저장합니다. 품목 데이터는 보존됩니다.</div>
+                    </div>
+                    <div class="d-flex gap-2"><button type="submit" class="btn btn-primary">저장</button><a th:href="@{/items}" class="btn btn-outline-secondary">목록으로</a></div>
+                </form>
+            </div>
+        </section>
+        <footer th:replace="~{fragments/layout :: footer}"></footer>
+    </main>
+</div>
+</body>
+</html>

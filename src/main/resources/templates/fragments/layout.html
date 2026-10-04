@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title} + ' | Mini MES'">Mini MES</title>
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<aside th:fragment="sidebar" class="sidebar">
+    <a class="brand" th:href="@{/items}">Mini MES</a>
+    <p class="sidebar-caption">기계가공 공정 관리</p>
+    <nav aria-label="주 메뉴">
+        <a class="menu-link active" th:href="@{/items}" aria-current="page">품목 관리</a>
+    </nav>
+    <div class="sidebar-note">교육용 가상 공장<br>로컬 개발 · 1단계</div>
+</aside>
+<footer th:fragment="footer" class="page-footer">교육용 가상 데이터를 사용하는 포트폴리오 프로젝트입니다.</footer>
+</body>
+</html>

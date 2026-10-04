@@ -1,0 +1,4 @@
+# 예시 데이터는 이 프로필에서만 추가한다. DB 설정은 application.yml과 같다.
+spring:
+  thymeleaf:
+    cache: false

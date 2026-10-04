@@ -1,0 +1,13 @@
+/target/
+/.tools/
+/.m2-local/
+/.idea/
+/.vscode/
+*.iml
+*.log
+.env
+.env.*
+!.env.example
+application-local.*
+*.pem
+*.key

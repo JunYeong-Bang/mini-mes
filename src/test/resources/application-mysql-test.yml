@@ -1,0 +1,7 @@
+# 전용 검증 DB에만 사용. 일반 개발 DB 주소를 지정하지 않는다.
+spring:
+  datasource:
+    url: ${MYSQL_TEST_URL}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_TEST_USERNAME}
+    password: ${MYSQL_TEST_PASSWORD}

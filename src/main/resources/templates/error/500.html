@@ -1,0 +1,5 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('처리 오류')}"></head>
+<body><div class="app-layout"><aside th:replace="~{fragments/layout :: sidebar}"></aside><main class="main-content"><h1>요청을 처리하지 못했습니다.</h1><p>목록으로 돌아가 저장된 내용을 확인한 뒤 다시 시도해 주세요.</p><a class="btn btn-primary" th:href="@{/items}">품목 목록으로</a></main></div></body>
+</html>
